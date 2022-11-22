@@ -84,7 +84,7 @@ if (isset($postdata) && !empty($postdata)) {
       $i++;
       }
 
-      //cuando se usa paginacion
+      //Cuando se usa paginacion
       $res = [
       'resultsForPage' => $mysql->getPaginator()->getResultsForPage(),
       'currentPage' => $mysql->getPaginator()->getCurrentPage() ,
