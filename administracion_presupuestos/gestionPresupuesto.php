@@ -15,8 +15,8 @@ $idcliente = '';
 $idcat_o_div = '';
 $proyecto = '';
 $idplaza = '';
-$idperiodo = '';
-$idduracion = '';
+$periodo_nv = '';
+$duracion_nv = '';
 $idcargasocial = '';
 $idestatus = '';
 $fechainicial = '';
@@ -36,8 +36,8 @@ $postdata = json_encode([
     'idcat_o_div' => $_POST['idcat_o_div'],
     'proyecto' => $_POST['proyecto'],
     'idplaza' => $_POST['idplaza'],
-    'idperiodo' => $_POST['idperiodo'],
-    'idduracion' => $_POST['idduracion'],
+    'periodo_nv' => $_POST['periodo'],
+    'duracion_nv' => $_POST['descripcion_duracion'],
     'idcargasocial' => $_POST['idcargasocial'],
     'idestatus' => $_POST['idestatus'],
     'fechainicial' => $_POST['fechainicial'],
@@ -63,8 +63,8 @@ if (isset($postdata) && !empty($postdata)) {
     $idcat_o_div = $mysql->real_escape_string((string) $request->idcat_o_div);
     $proyecto = $mysql->real_escape_string((string) $request->proyecto);
     $idplaza = $mysql->real_escape_string((string) $request->idplaza);
-    $idperiodo = $mysql->real_escape_string((string) $request->idperiodo);
-    $idduracion = $mysql->real_escape_string((string) $request->idduracion);
+    $periodo_nv = $mysql->real_escape_string((string) $request->periodo_nv);
+    $duracion_nv = $mysql->real_escape_string((string) $request->duracion_nv);
     $idcargasocial = $mysql->real_escape_string((string) $request->idcargasocial);
     $idestatus = $mysql->real_escape_string((string) $request->idestatus);
     $fechainicial = $mysql->real_escape_string((string) $request->fechainicial);
@@ -89,8 +89,8 @@ if (isset($postdata) && !empty($postdata)) {
   {$_idcat_o_div},-- <{idcat_o_div INT}>
   '{$proyecto}',-- <{proyecto VARCHAR(200)}>
   '{$idplaza}',-- <{idplaza INT}>
-  '{$idperiodo}',-- <{idperiodo INT}>
-  '{$idduracion}',-- <{idduracion INT}>
+  '{$periodo_nv}',-- <{periodo_nv VARCHAR(500)}>
+  '{$duracion_nv}',-- <{duracion_nv VARCHAR(500)}>
   {$_idcargasocial},-- <{idcargasocial INT}>
   '{$idestatus}',-- <{idestatus INT}>
   '{$fechainicial}',-- <{fechainicial DATETIME}>
