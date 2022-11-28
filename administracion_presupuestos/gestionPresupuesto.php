@@ -14,7 +14,7 @@ $folio = '';
 $idcliente = '';
 $idcat_o_div = '';
 $proyecto = '';
-$idplaza = '';
+$idplaza = [];
 $periodo_nv = '';
 $duracion_nv = '';
 $idcargasocial = '';
@@ -62,7 +62,7 @@ if (isset($postdata) && !empty($postdata)) {
     $idcliente = $mysql->real_escape_string((string) $request->idcliente);
     $idcat_o_div = $mysql->real_escape_string((string) $request->idcat_o_div);
     $proyecto = $mysql->real_escape_string((string) $request->proyecto);
-    $idplaza = $mysql->real_escape_string((string) $request->idplaza);
+    $idplaza = $request->idplaza;
     $periodo_nv = $mysql->real_escape_string((string) $request->periodo_nv);
     $duracion_nv = $mysql->real_escape_string((string) $request->duracion_nv);
     $idcargasocial = $mysql->real_escape_string((string) $request->idcargasocial);
@@ -88,7 +88,6 @@ if (isset($postdata) && !empty($postdata)) {
   '{$idcliente}',-- <{idcliente INT}>
   {$_idcat_o_div},-- <{idcat_o_div INT}>
   '{$proyecto}',-- <{proyecto VARCHAR(200)}>
-  '{$idplaza}',-- <{idplaza INT}>
   '{$periodo_nv}',-- <{periodo_nv VARCHAR(500)}>
   '{$duracion_nv}',-- <{duracion_nv VARCHAR(500)}>
   {$_idcargasocial},-- <{idcargasocial INT}>
@@ -107,11 +106,32 @@ if (isset($postdata) && !empty($postdata)) {
         while ($row = mysqli_fetch_assoc($result)) {
             $res['idRes'] = $row['idRes'];
             $res['Mensaje'] = $row['Mensaje'];
+            $_idpresupuesto = $row['idpresupuesto'];
         }
     }
 
     //Cierra la conexion
     $mysql->Close($mysql->getConnection());
+
+    //Borra las plazas asignadas anteriormente al presupuesto
+    $mysql1 = new MysqlManager();
+    $sqlp = "CALL Proc_EliminaPlazasAlPresupuesto('{$_idpresupuesto}');";
+    $result = $mysql1->QueryAsNormal($sqlp);
+    $mysql1->Close($mysql1->getConnection());
+
+    //Extrae plazas nuevas que se van a insertar
+    $ids_plazas = explode(',', $idplaza);
+
+    //Recorre todas las plazas nuevas encontradas
+    foreach ($ids_plazas as $id_plaza) {
+        if (trim($id_plaza) != '') {
+            //Realiza la inserción de cada plaza encontrada
+            $mysql2 = new MysqlManager();
+            $sqlp = "CALL Proc_AsignaPlazaAlPresupuesto('{$_idpresupuesto}','{$id_plaza}');";
+            $result = $mysql2->QueryAsNormal($sqlp);
+            $mysql2->Close($mysql2->getConnection());
+        }
+    }
 
     echo json_encode($res);
 } 
