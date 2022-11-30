@@ -40,6 +40,10 @@ if (isset($postdata) && !empty($postdata)) {
             // Conceptos
             $sqlConsulta = 'Select concepto valor,concepto label from vw_conceptos where trim(lower(concepto)) LIKE trim(lower(\'' . $condicion . '%\')) order by 1 asc ';
             break;
+        case "conceptos_por_rubro":
+            // Conceptos por rubro
+            $sqlConsulta = 'Select concepto valor,concepto label from vw_conceptos where idrubro = (Select cr.idrubro from cat_rubro cr where trim(lower(cr.rubro)) = trim(lower(\'' . $condicion . '\'))) order by 1 asc ';
+            break;
         case "costo_carga_social":
             $sqlConsulta = 'Select valor from vw_cargas_sociales where idcargasocial = \'' . $condicion . '\' order by 1 asc ';
             break;

@@ -45,10 +45,10 @@ if (isset($postdata) && !empty($postdata)) {
         $unidad = $mysql->real_escape_string((string) $request->unidad);
         $rubro = $mysql->real_escape_string((string) $request->rubro);
         $concepto = $mysql->real_escape_string((string) $request->concepto);
-        $costo_unitario = $mysql->real_escape_string((string) $request->costo_unitario);
-        $diario_integrado = $mysql->real_escape_string((string) $request->diario_integrado);
+        $costo_unitario = str_replace(array('$', ','), array(''), $mysql->real_escape_string((string) $request->costo_unitario));
+        $diario_integrado = str_replace(array('$', ','), array(''), $mysql->real_escape_string((string) $request->diario_integrado));
         $no_dias = $mysql->real_escape_string((string) $request->no_dias);
-        $costo_total = str_replace(array(','), array(''), $mysql->real_escape_string((string) $request->costo_total));
+        $costo_total = str_replace(array('$', ','), array(''), $mysql->real_escape_string((string) $request->costo_total));
         $modulo = $mysql->real_escape_string((string) $request->modulo);
         $uda = $mysql->real_escape_string((string) $request->uda);
         $fda = $mysql->real_escape_string((string) $request->fda);

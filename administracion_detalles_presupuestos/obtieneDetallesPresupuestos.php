@@ -55,6 +55,14 @@ if (isset($postdata) && !empty($postdata)) {
     $mysql->tableMoreCondition = $sqlCond;
     // SelectType::NONE se establece para cuando solo se require jacer una modificiacion insert,update, delete
     $detalles_presupuestos = $mysql->Query($sqlConsulta, $Select_Type);
+    if (is_array($detalles_presupuestos)) {
+        for ($i = 0; $i < sizeof($detalles_presupuestos); $i++) {
+            $detalles_presupuestos[$i]['costo_unitario'] = '$' . number_format($detalles_presupuestos[$i]['costo_unitario'], 2);
+            $detalles_presupuestos[$i]['diario_integrado'] = '$' . number_format($detalles_presupuestos[$i]['diario_integrado'], 2);
+            $detalles_presupuestos[$i]['costo_total'] = '$' . number_format($detalles_presupuestos[$i]['costo_total'], 2);
+        }
+    }
+
 
     if ($Select_Type == SelectType::SELECT_WITH_PAGINATION) {
         $res = [

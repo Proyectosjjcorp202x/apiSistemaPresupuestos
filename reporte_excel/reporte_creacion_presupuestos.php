@@ -41,7 +41,7 @@ if (isset($postdata) && !empty($postdata)) {
     $sheetn->setTitle('Presupuesto');
 
 // Copia los nombres de los campos de creacion de presupuesto (Columna A de la A2 a la A9)
-    for ($i = 2; $i <= 9; $i++) {
+    for ($i = 2; $i <= 8; $i++) {
         colocarValor($sheetn, $sheet, $i, 'A', $i, 'A');
         copiarEstilos($sheetn, $sheet, $i, 'A', $i, 'A');
     }
@@ -53,10 +53,9 @@ if (isset($postdata) && !empty($postdata)) {
     colocarValor($sheetn, null, 6, 'B', null, null, $obtieneInfo->Plazas);
     colocarValor($sheetn, null, 7, 'B', null, null, $obtieneInfo->Periodos);
     colocarValor($sheetn, null, 8, 'B', null, null, $obtieneInfo->Duracion);
-    colocarValor($sheetn, null, 9, 'B', null, null, $obtieneInfo->Objetivo);
-
+    //colocarValor($sheetn, null, 9, 'B', null, null, $obtieneInfo->Objetivo);
 // Copia el formato de las celdas de la B2 a la B9 que son las celdas con la informacion de creacion de presupuesto
-    for ($i = 2; $i <= 9; $i++) {
+    for ($i = 2; $i <= 8; $i++) {
         copiarEstilos($sheetn, $sheet, $i, 'B', $i, 'B');
     }
 
@@ -460,12 +459,11 @@ if (isset($postdata) && !empty($postdata)) {
     $objWriter->save('php://output');
     $xlsData = ob_get_contents();
     ob_end_clean();
-    
+
     // Obtiene solo el nombre corto del archivo
-    $a =  explode('/',$archivo_generado);
-    $nombre_corto = $a[sizeof($a)-1];
-     
-    
+    $a = explode('/', $archivo_generado);
+    $nombre_corto = $a[sizeof($a) - 1];
+
     $response = array(
         'status' => TRUE,
         'url' => "data:application/vnd.ms-excel;base64," . base64_encode($xlsData),

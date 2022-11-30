@@ -40,7 +40,7 @@ if (isset($postdata) && !empty($postdata)) {
 
     $tabla = '<table>';
 
-    for ($i = 2; $i <= 9; $i++) {
+    for ($i = 2; $i <= 8; $i++) {
         $tabla .= '<tr>'
                 . '<td align="right"><b>' . ExtraerValor($sheet, 'A' . $i) . '</b></td>'
                 . '<td style="color:' . ExtraerEstilos($sheet, 'B' . $i)['FontColor'] . '; font-size:' . ExtraerEstilos($sheet, 'B' . $i)['FontSize'] . 'pt" align="left">' . ExtraerInformacionPrincipalPresupuesto($i - 1, $obtieneInfo) . '</td>'
@@ -292,7 +292,7 @@ if (isset($postdata) && !empty($postdata)) {
 
 // Asigna el titulo: GRAN TOTAL ANTES DE I.V.A
     $tabla .= '<br><br><br><table style="width:100%;"><tr><td style="width:50%"></td><td style="width:50%"><table style="width:100%;">';
-    //$tabla .= '<tr><th colspan="2" align="right">' . ExtraerValor($sheet, 'E44') . '</th></tr>';
+    $tabla .= '<tr><th colspan="2" align="right">' . ExtraerValor($sheet, 'E44') . '</th></tr>';
     $tabla .= '<tr><th colspan="2" style="height:30px" align="right"></th></tr>';
     // Asigna el nombre de los campos de los calculos de subtotales e I.V.A de las celdas: E46 a la E48
     for ($_i = 46; $_i <= 48; $_i++) {

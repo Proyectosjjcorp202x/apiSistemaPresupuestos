@@ -141,8 +141,10 @@ class ObtieneInformacionAExportar {
                     $this->Proyecto = $row['proyecto'];
                     $this->Plazas = $row['plaza'];
                     $this->Periodos = $row['periodo'];
-                    $this->Duracion = $row['duracion'];
-                    $this->Objetivo = $row['objetivo'];
+                    $_descripcion_duracion = ($row['descripcion_duracion'] != null) ? (trim($row['descripcion_duracion']) != '') ? $row['descripcion_duracion'] . ' ' : '' : '';
+                    $_duracion = ($row['duracion'] != null) ? (trim($row['duracion']) != '') ? $row['duracion'] . ' ' : '' : '';
+                    $this->Duracion = $_descripcion_duracion . '' . $_duracion;
+                    //$this->Objetivo = $row['objetivo'];
                 }
                 mysqli_free_result($result);
             }
