@@ -3,14 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/G:/wamp64/www/apiSistemaPresupuestos/reporte_excel/ObtieneInformacionAExportar.php</file>
-            <file>file:/G:/wamp64/www/apiSistemaPresupuestos/Listas/listas.php</file>
-            <file>file:/G:/wamp64/www/apiSistemaPresupuestos/reporte_excel/reporte_creacion_presupuestos_pdf.php</file>
-            <file>file:/G:/wamp64/www/apiSistemaPresupuestos/reporte_excel/reporte_creacion_presupuestos.php</file>
-            <file>file:/G:/wamp64/www/apiSistemaPresupuestos/Listas/listas_predictivas.php</file>
-            <file>file:/G:/wamp64/www/apiSistemaPresupuestos/administracion_presupuestos/gestionPresupuesto.php</file>
-            <file>file:/G:/wamp64/www/apiSistemaPresupuestos/administracion_detalles_presupuestos/gestionDetallePresupuesto.php</file>
-            <file>file:/G:/wamp64/www/apiSistemaPresupuestos/administracion_detalles_presupuestos/obtieneDetallesPresupuestos.php</file>
+            <file>file:/G:/wamp64/www/apiSistemaPresupuestos/administracion_clientes/obtieneClientes.php</file>
+            <file>file:/G:/wamp64/www/apiSistemaPresupuestos/administracion_clientes/gestionCliente.php</file>
         </group>
     </open-files>
 </project-private>

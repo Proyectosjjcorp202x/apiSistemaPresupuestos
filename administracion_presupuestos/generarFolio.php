@@ -23,13 +23,24 @@ if (isset($postdata) && !empty($postdata)) {
 
     $idcliente = $mysql->real_escape_string((string) $request->idcliente);
 
-    $sql = "select fn_foliopresupuesto('{$request->idcliente}') as folio;";
+    $sql = "select fn_foliopresupuesto('{$request->idcliente}') as folio,fn_cargasocial('{$request->idcliente}') as cargasocial;";
 
     $folio = $mysql->Query($sql, SelectType::SELECT);
 
     if (sizeof($folio) > 0) {
-        echo json_encode(['folio' => $folio[0]['folio']]);
+
+        //*******************Inserta carga social si no existe*****************************************/
+        $mysql = new MysqlManager();
+
+        $sql = "CALL Proc_InsertaCargaSocialCuandoNoExiste('" . $folio[0]['cargasocial'] . "');";
+
+        $res = $mysql->Query($sql, SelectType::NONE);
+
+        //*********************************************************************************************/
+
+
+        echo json_encode(['folio' => $folio[0]['folio'], 'cargasocial' => $folio[0]['cargasocial']]);
     } else {
-        echo json_encode(['folio' => '']);
+        echo json_encode(['folio' => '', 'cargasocial' => '']);
     }
 }

@@ -54,6 +54,14 @@ if (isset($postdata) && !empty($postdata)) {
     // SelectType::NONE se establece para cuando solo se require jacer una modificiacion insert,update, delete
     $clientes = $mysql->Query($sqlConsulta, $Select_Type);
 
+    if (is_array($clientes)) {
+        for ($i = 0; $i < sizeof($clientes); $i++) {
+            $clientes[$i]['administracion'] = '$' . number_format($clientes[$i]['administracion'], 2);
+            $clientes[$i]['reporteo_telefonia'] = '$' . number_format($clientes[$i]['reporteo_telefonia'], 2);
+            $clientes[$i]['jefe_plan'] = '$' . number_format($clientes[$i]['jefe_plan'], 2);
+        }
+    }
+
     if ($Select_Type == SelectType::SELECT_WITH_PAGINATION) {
         $res = [
             'resultsForPage' => $mysql->getPaginator()->getResultsForPage(),

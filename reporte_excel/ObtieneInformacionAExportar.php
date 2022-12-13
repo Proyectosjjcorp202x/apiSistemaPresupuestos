@@ -140,9 +140,9 @@ class ObtieneInformacionAExportar {
                     $this->Cliente = $row['nombrecliente'];
                     $this->Proyecto = $row['proyecto'];
                     $this->Plazas = $row['plaza'];
-                    $this->Periodos = $row['periodo'];
-                    $_descripcion_duracion = ($row['descripcion_duracion'] != null) ? (trim($row['descripcion_duracion']) != '') ? $row['descripcion_duracion'] . ' ' : '' : '';
-                    $_duracion = ($row['duracion'] != null) ? (trim($row['duracion']) != '') ? $row['duracion'] . ' ' : '' : '';
+                    $this->Periodos = $row['periodo_e'];
+                    $_descripcion_duracion = '';//($row['descripcion_duracion'] != null) ? (trim($row['descripcion_duracion']) != '') ? $row['descripcion_duracion'] . ' ' : '' : '';
+                    $_duracion = ($row['duracion_e'] != null) ? (trim($row['duracion_e']) != '') ? $row['duracion_e'] . ' ' : '' : '';
                     $this->Duracion = $_descripcion_duracion . '' . $_duracion;
                     //$this->Objetivo = $row['objetivo'];
                 }
